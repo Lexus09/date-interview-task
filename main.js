@@ -41,33 +41,33 @@ function outputDate(dates) {
 	if (endDay - startDay < 0) monthDiff--;
    
 	const startingYearInDays = getMonthsInDays(startYear);
-    const endYearInDays = getMonthsInDays(endYear);
+   	const endYearInDays = getMonthsInDays(endYear);
 
-    const startYearElapsedDays = startingYearInDays.reduce((acc, curr, index) => index >= (startMonth - 1) ? acc : acc += curr, 0) + startDay;
+	const startYearElapsedDays = startingYearInDays.reduce((acc, curr, index) => index >= (startMonth - 1) ? acc : acc += curr, 0) + startDay;
 
-    const endMonthRemainingDays = endYearInDays[endMonth - 1] - endDay;
-    const endYearRemainingDays = endYearInDays.reduce((acc, curr, index) => index <= (endMonth - 1) ? acc : acc += curr, 0) + endMonthRemainingDays;
-    
-    let totalDays = 0;
-    for (let i = startYear; i <= endYear; i++) {
+	const endMonthRemainingDays = endYearInDays[endMonth - 1] - endDay;
+	const endYearRemainingDays = endYearInDays.reduce((acc, curr, index) => index <= (endMonth - 1) ? acc : acc += curr, 0) + endMonthRemainingDays;
+
+	let totalDays = 0;
+	for (let i = startYear; i <= endYear; i++) {
 		totalDays += isLeapYear(i) ? 366 : 365;
-    }
-    
-    totalDays -= (startYearElapsedDays + endYearRemainingDays);
+	}
 
-    let result = "";
+	totalDays -= (startYearElapsedDays + endYearRemainingDays);
 
-    if (yearDiff > 0) {
-    	result += `${yearDiff} ${yearDiff > 1 ? "years" : "year"}, `;
-    }
- 
-    if (monthDiff > 0) {
-    	result += `${monthDiff} ${monthDiff > 1 ? "months" : "month"}, `;
-    }
-    
-    result += `total ${totalDays} days`;
-    
-    return result;
+	let result = "";
+
+	if (yearDiff > 0) {
+		result += `${yearDiff} ${yearDiff > 1 ? "years" : "year"}, `;
+	}
+
+	if (monthDiff > 0) {
+		result += `${monthDiff} ${monthDiff > 1 ? "months" : "month"}, `;
+	}
+
+	result += `total ${totalDays} days`;
+
+	return result;
 }
 
 
